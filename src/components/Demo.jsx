@@ -46,6 +46,12 @@ const Demo = () => {
     setTimeout(() => setCopied(false), 3000);
   };
 
+  const handleClearArticles = () => {
+    localStorage.removeItem("articles");
+    setAllArticles([]);
+    setArticle({ url: "", summary: "" });
+  };
+
   return (
     <section className="mt-16 w-full max-w-xl">
       <div className="flex flex-col w-full gap-2">
@@ -94,6 +100,16 @@ const Demo = () => {
             </div>
           ))}
         </div>
+
+        {/* CLEAR ARTICLES BUTTON */}
+        {allArticles.length > 0 && (
+          <button
+            className="clear_btn mt-4 py-2 px-4 bg-red-500 text-white rounded hover:bg-red-600 transition duration-200"
+            onClick={handleClearArticles}
+          >
+            Clear Articles
+          </button>
+        )}
       </div>
 
       {/* DISPLAY RESULTS */}
